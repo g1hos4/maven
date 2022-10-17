@@ -40,4 +40,36 @@
     <module>maven-api-core</module>
   </modules>
 
+  <profiles>
+    <profile>
+      <id>reporting</id>
+      <reporting>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <configuration>
+              <tags>
+                <tag>
+                  <name>provisional</name>
+                  <placement>tf</placement>
+                  <head>Provisional:</head>
+                </tag>
+              </tags>
+            </configuration>
+            <reportSets>
+              <reportSet>
+                <id>aggregate</id>
+                <inherited>false</inherited>
+                <reports>
+                  <report>aggregate</report>
+                </reports>
+              </reportSet>
+            </reportSets>
+          </plugin>
+        </plugins>
+      </reporting>
+    </profile>
+  </profiles>
+
 </project>
