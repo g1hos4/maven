@@ -40,6 +40,10 @@ public class CLIManager
 
     public static final char BATCH_MODE = 'B';
 
+    public static final String NON_INTERACTIVE = "ni";
+
+    public static final String FORCE_INTERACTIVE = "fi";
+
     public static final char SET_USER_PROPERTY = 'D';
 
     /**
@@ -138,7 +142,9 @@ public class CLIManager
         options.addOption( Option.builder( Character.toString( NON_RECURSIVE ) ).longOpt( "non-recursive" ).desc( "Do not recurse into sub-projects. When used together with -pl, do not recurse into sub-projects of selected aggregators" ).build() );
         options.addOption( Option.builder( Character.toString( UPDATE_SNAPSHOTS ) ).longOpt( "update-snapshots" ).desc( "Forces a check for missing releases and updated snapshots on remote repositories" ).build() );
         options.addOption( Option.builder( Character.toString( ACTIVATE_PROFILES ) ).longOpt( "activate-profiles" ).desc( "Comma-delimited list of profiles to activate. Prefixing a profile with ! excludes it, and ? marks it as optional" ).hasArg().build() );
-        options.addOption( Option.builder( Character.toString( BATCH_MODE ) ).longOpt( "batch-mode" ).desc( "Run in non-interactive (batch) mode (disables output color)" ).build() );
+        options.addOption( Option.builder( Character.toString( BATCH_MODE ) ).longOpt( "batch-mode" ).desc( "Run in non-interactive (batch) mode (disables output color) - alias for --non-interactive (kept for backwards compatability)" ).build() );
+        options.addOption( Option.builder( NON_INTERACTIVE ).longOpt( "non-interactive" ).desc( "Run in non-interactive (batch) mode (disables output color) - alias for --batch-mode" ).build() );
+        options.addOption( Option.builder( FORCE_INTERACTIVE ).longOpt( "force-interactive" ).desc( "Run in interactive mode - even when the environment variable CI is set to true and --non-interactive or --batch-mode are set" ).build() );
         options.addOption( Option.builder( SUPPRESS_SNAPSHOT_UPDATES ).longOpt( "no-snapshot-updates" ).desc( "Suppress SNAPSHOT updates" ).build() );
         options.addOption( Option.builder( Character.toString( CHECKSUM_FAILURE_POLICY ) ).longOpt( "strict-checksums" ).desc( "Fail the build if checksums don't match" ).build() );
         options.addOption( Option.builder( Character.toString( CHECKSUM_WARNING_POLICY ) ).longOpt( "lax-checksums" ).desc( "Warn if checksums don't match" ).build() );
