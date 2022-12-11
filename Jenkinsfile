@@ -34,6 +34,8 @@ def osNode = jenkinsEnv.labelForOS(buildOs)
 node(jenkinsEnv.nodeSelection(osNode)) {
     dir('build') {
         stage('Checkout') {
+            // Clean workspace before build
+            cleanWs()
             checkout scm
         }
 
